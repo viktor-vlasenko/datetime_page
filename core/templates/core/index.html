@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Index{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "core/css/index.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="/index/" method="post" class="row">
+        <input id="input_name" type="text" class="form-control col-8 input_name" placeholder="Ваше имя" size="100" name="name">
+        <input id="submit_button" type="submit" class="btn btn-dark col-3" value="Узнать, что будет">
+    </form>
+</div>
+{% if name %}
+    <div class="output">
+        <p class="dt_text name text-center">Привет, {{ name }}! Мои часы показывают: {{ current_time }}, а на календаре {{current_date}}.<p>
+    </div>
+    <div class="row justify-content-center">   
+        <form action="/index/" method="get" class="output col-2">
+            <input type="submit" class="form-control btn btn-dark" value="OK!">           
+        </form>
+    </div> 
+{% endif %}
+{% endblock %}
