@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tz %}
 
 {% block title %}Index{% endblock %}
 
@@ -10,18 +11,26 @@
 {% block content %}
 <div class="container">
     <form action="/index/" method="post" class="row">
-        <input id="input_name" type="text" class="form-control col-8 input_name" placeholder="Ваше имя" size="100" name="name">
-        <input id="submit_button" type="submit" class="btn btn-dark col-3" value="Узнать, что будет">
+        <input id="input_name"
+               type="text" class="form-control col-8 input_name" placeholder="Your name" size="100" name="name">
+        <input id="submit_button" type="submit" class="btn btn-dark col-3" value="Show me da wae">
     </form>
 </div>
 {% if name %}
     <div class="output">
-        <p class="dt_text name text-center">Привет, {{ name }}! Мои часы показывают: {{ current_time }}, а на календаре {{current_date}}.<p>
+        <p class="dt_text name text-center">
+            Hello, {{ name }}! Current time is {{ current_time }}, and today is {{current_date}}.<p>
     </div>
-    <div class="row justify-content-center">   
-        <form action="/index/" method="get" class="output col-2">
-            <input type="submit" class="form-control btn btn-dark" value="OK!">           
-        </form>
-    </div> 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <form action="/index/" method="get" class="output">
+                    <input type="submit" class="form-control btn btn-dark" value="OK!">
+                </form>
+            </div>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}
+
+
